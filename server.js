@@ -8,7 +8,7 @@ app.use(express.static("public"));
 //   res.status(200).send("All cool");
 // });
 
-const server = app.listen(3000, () => {
+const server = app.listen(process.env.PORT || 3000, () => {
   console.log("listening to port 3000...");
 });
 let io = socket(server);
