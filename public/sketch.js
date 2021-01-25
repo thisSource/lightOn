@@ -4,14 +4,31 @@ const onCss = document.getElementById("on")
 const offCss = document.getElementById("off")
 
 const background = document.querySelector("body")
-
+let dataF;
+let nodeAPI = "/api"
 
 let socket = io();
+runSystemFromStart ()
+async function runSystemFromStart (){
 
-fetch("/api")
-.then(data => data.text())
-.then(data => console.log(data))
+let dataStart = await fetch(nodeAPI)
+let dataToUse = await dataStart.json()
 
+let onOff = dataToUse;
+if(onOff === true){
+    button.style.background ="lightgray"
+    onCss.style.color = "green"
+    offCss.style.color = "darkgray"
+    background.style.background ="white"
+} else {
+    button.style.background ="gray"
+        onCss.style.color = "darkgray"
+        offCss.style.color = "red"
+        background.style.background ="black"
+}
+
+
+console.log(dataToUse)
 
 socket.on("click", (data)=>{
     if(data.isOn === true){
@@ -28,10 +45,11 @@ socket.on("click", (data)=>{
         background.style.background ="black"
         clickOffSound()
     }
- console.log(data)
 })
 
-let onOff = true
+
+
+
 
 
 button.addEventListener("click", ()=>{
@@ -70,3 +88,4 @@ function clickOnSound(){
   }
 
 
+}
