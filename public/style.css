@@ -1,21 +1,31 @@
-#button {
-  background-color: lightgray;
-  width: 100px;
-  height: 50px;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 15px;
-  font-weight: bolder;
-}
-#off {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 15px;
-  font-weight: bolder;
-  color: darkgray;
+body {
+  margin: 0px;
 }
 
-#on {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 15px;
-  font-weight: bolder;
-  color: green;
+#wrapper {
+  position: relative;
+
+}
+#button {
+   background-repeat:no-repeat;
+  cursor:pointer;
+  overflow: hidden;
+  background: unset !important;
+  border: unset !important;
+  outline: unset !important;
+}
+
+.bc {
+  position: fixed;
+  bottom: 0px;
+  left: 10%;
+  width: 200px;
+  height: 100px;
+}
+
+#bulb {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 30%;
 }

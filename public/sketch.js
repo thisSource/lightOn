@@ -1,74 +1,47 @@
 const button = document.getElementById("button");
-const onCss = document.getElementById("on");
-const offCss = document.getElementById("off");
+const bulb = document.getElementById("bulb");
+const buttonImg = document.getElementById("buttonImg");
 
 const background = document.querySelector("body");
 let dataF;
 let nodeAPI = "/api";
 let socket = io();
 
-
 runSystemFromStart();
 async function runSystemFromStart() {
   let dataStart = await fetch(nodeAPI);
   let dataToUse = await dataStart.json();
-//   
+  //
 
   let onOff = dataToUse;
   if (onOff === true) {
-    button.style.background = "lightgray";
-    onCss.style.color = "green";
-    offCss.style.color = "darkgray";
-    background.style.background = "white";
+    turnOn();
   } else {
-    button.style.background = "gray";
-    onCss.style.color = "darkgray";
-    offCss.style.color = "red";
-    background.style.background = "black";
+    turnOff();
   }
-
-  console.log(dataToUse);
 
   socket.on("click", (data) => {
     if (data.isOn === true) {
-      button.style.background = "lightgray";
-      onCss.style.color = "green";
-      offCss.style.color = "darkgray";
-      background.style.background = "white";
+      turnOn();
       clickOnSound();
     } else {
-      button.style.background = "gray";
-      onCss.style.color = "darkgray";
-      offCss.style.color = "red";
-      background.style.background = "black";
+      turnOff();
       clickOffSound();
     }
   });
 
-  console.log("little test")
-
   button.addEventListener("click", () => {
     if (onOff.isOn === false) {
       onOff = { isOn: true };
-
-      button.style.background = "lightgray";
-      onCss.style.color = "green";
-      offCss.style.color = "darkgray";
-      background.style.background = "white";
+      turnOn();
       clickOnSound();
     } else {
       onOff = { isOn: false };
-
-      button.style.background = "gray";
-      onCss.style.color = "darkgray";
-      offCss.style.color = "red";
-      background.style.background = "black";
+      turnOff();
       clickOffSound();
     }
 
     socket.emit("click", onOff);
-
-    // console.log("sending... " + onOff)
   });
 
   function clickOnSound() {
@@ -80,4 +53,15 @@ async function runSystemFromStart() {
     var audio = new Audio("ClickFast.mp3");
     audio.play();
   }
+}
+function turnOn() {
+  buttonImg.src = "buttonOn.png";
+  background.style.background = "lightyellow";
+  bulb.src = "on.png";
+}
+
+function turnOff() {
+  buttonImg.src = "buttonOff.png";
+  background.style.background = "rgb(15,15,17";
+  bulb.src = "off.png";
 }
