@@ -45,6 +45,8 @@ async function runSystemFromStart() {
     }
   });
 
+  console.log("little test")
+
   button.addEventListener("click", () => {
     if (onOff.isOn === false) {
       onOff = { isOn: true };
