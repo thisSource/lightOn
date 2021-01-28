@@ -18,8 +18,8 @@ body {
 .bc {
   position: fixed;
   bottom: 0px;
-  left: 10%;
-  width: 30%;
+  left: 1%;
+  height: 20%;
 }
 
 #bulb {
@@ -27,4 +27,5 @@ body {
   margin-left: auto;
   margin-right: auto;
   width: 30%;
+  min-width: 200px;
 }
